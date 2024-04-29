@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Krub:wght@500&display=swap");
+
+
+
+p,
+li {
+    font-family: "Krub", sans-serif !important;
+    font-size: 16px;
+    line-height: 25px;
+    word-spacing: 2px;
+}
+#navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+}
+#MainMenu {
+    justify-content: flex-end;
+}
+.nav-item .nav-link {
+    -webkit-animation: ease-in-out;
+    animation: ease-in-out;
+    margin: 0 5px;
+}
+.nav-item a {
+    padding: 10px 12px;
+    font-size: 16px;
+}
+.nav-item .nav-link,
+.nav-item .nav-link:hover {
+    color: #fff !important;
+}
+.nav-item {
+    padding: 0 8px;
+}
+p, li {
+    font-family: krub, sans-serif !important;
+    font-size: 15px;
+    line-height: 25px;
+    word-spacing: 2px;
+}
+
+.seperator {
+    color: silver;
+}
+.social-btn {
+    display: flex;
+}
+.connect-btn {
+    padding:8px 20px 5px 15px;
+    border-radius: 30px;
+    background-color: #C9522A;
+    cursor: pointer;
+}
+.connect-btn a, .login-btn a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px !important;
+}
+.login-btn {
+    padding:6px 20px 5px 20px;
+    border-radius: 30px;
+    border: 2px solid #C9522A;
+    margin-right: 0.7rem;
+    cursor: pointer;
+}
+.navbar>.container{
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 992px) {
+    .nav-cont{
+        justify-content: space-between;
+    }
+    #MainMenu {
+        background-color: #39393a;
+        transition: 0.3s ease-in-out;
+        display: none;
+    }
+    #MainMenu.active {
+        display: block;
+        position: absolute;
+        transition: 0.3s ease-in-out;
+        width: 100%;
+        left: 0;
+        z-index: 1;
+        top: 7rem;
+        padding: 2rem 0;
+    }
+    .seperator{
+        display: none;
+    }
+    .social-btn{
+        margin-top: 2rem;
+        justify-content: center;
+    }
+    .cta-btn{
+        margin-top: 1.5rem;
+    }
+}
