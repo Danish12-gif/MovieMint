@@ -120,7 +120,7 @@ function Header({ wallet, connectWallet  }) {
               <div className="login-btn">
                 <a href={{}}>Signup</a>
               </div>
-              <div>
+              
                 {typeof window.ethereum !== "undefined" ? (
                   wallet?.address ? (
                     <p className="mb-0 pt-2">
@@ -146,9 +146,15 @@ function Header({ wallet, connectWallet  }) {
                     </button>
                   )
                 ) : (
-                  <p className="pt-2 mb-0">Install MetaMask</p>
+                  <a
+              target="_blank"
+              href="https://metamask.io/download/"
+              className="text-black bg-warning py-2 px-3 fw-bold rounded-5"
+              rel="noreferrer"
+            >
+              Install Metamask
+            </a>
                 )}
-              </div>
             </div>
           </div>
         </div>
