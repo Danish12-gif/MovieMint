@@ -1,30 +1,21 @@
-import './App.css';
-import Header from './Header';
-import Herosection from './components/Herosection';
-import RecentProj from './components/RecentProj';
-import TopProj from './components/TopProj';
-import LatestProj from './components/LatestProj';
-import UpcomingProjects from './components/UpcomingProjects';
-import ProductionHouses from './components/ProductionHouses';
-import Faqs from './components/Faqs';
-import Newsletter from './components/Newsletter';
-import Footer from './components/Footer';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./Layout";
+import Home from "./Home";
+import Overview from "./Overview";
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-       <Header />
-      </header>
-      <Herosection />
-      <LatestProj />
-      <RecentProj />
-      <TopProj />
-      <UpcomingProjects />
-      <ProductionHouses />
-      <Faqs />
-      <Newsletter />
-      <Footer />
-    </div>
+    <>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/overview" element={<Overview />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    </>
   );
 }
 

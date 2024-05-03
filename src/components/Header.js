@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import "./css/Nav.css";
-import moviemint from "./images/moviemint-logo.png";
+import "../css/Nav.css";
+import moviemint from "../images/moviemint-logo.png";
+import { Link } from "react-router-dom";
 
-function Header() {
+function Header({ wallet, connectWallet  }) {
   useEffect(() => {
     const toggleButton = document.getElementById("toggleButton");
     const menu = document.getElementById("MainMenu");
@@ -26,14 +27,23 @@ function Header() {
     return () => {
       toggleButton.removeEventListener("click", toggleMenu);
     };
-  }, []); // Empty dependency array to ensure it runs once on component mount
-
+  }, []); 
+//  useEffect (() => {
+//     wallet.address
+//  }, []);
   return (
     <>
       <nav className="navbar-expand-lg head-area stickyElement py-4">
         <div className="container d-flex nav-cont">
           <div className="logo">
-            <img src={moviemint} alt="Moviemint Logo" width="80" height="80" />
+            <Link to="/">
+              <img
+                src={moviemint}
+                alt="Moviemint Logo"
+                width="80"
+                height="80"
+              />
+            </Link>
           </div>
           <button
             id="toggleButton"
@@ -72,17 +82,17 @@ function Header() {
           </button>
 
           <div className="navbar-collapse" id="MainMenu">
-          <ul className="navbar-nav mb-2 mb-lg-0 mx-0 align-items-center me-3">
+            <ul className="navbar-nav mb-2 mb-lg-0 mx-0 align-items-center me-3">
               <li className="nav-item">
-                <a href="{{ route('home') }}" className="nav-link">
+                <Link to="/" className="nav-link">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item seperator">|</li>
               <li className="nav-item">
-                <a className="nav-link" href="{{ route('home') }}">
+                <Link className="nav-link" to="/overview">
                   Overview
-                </a>
+                </Link>
               </li>
               <li className="nav-item seperator">|</li>
               <li className="nav-item dropdown">
@@ -110,23 +120,34 @@ function Header() {
               <div className="login-btn">
                 <a href={{}}>Signup</a>
               </div>
-              <div className="connect-btn">
-                <a href={{}}>
-                  <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      className="bi bi-link-45deg me-1"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
-                      <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
-                    </svg>
-                  </span>
-                  Connect
-                </a>
+              <div>
+                {typeof window.ethereum !== "undefined" ? (
+                  wallet?.address ? (
+                    <p className="mb-0 pt-2">
+                      {wallet?.address?.slice(0, 8)}...
+                      {wallet?.address?.slice(-8)}
+                    </p>
+                  ) : (
+                    <button className="connect-btn text-white" onClick={connectWallet}>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="25"
+                          height="25"
+                          fill="currentColor"
+                          className="bi bi-link-45deg me-1"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
+                          <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
+                        </svg>
+                      </span>
+                      Connect
+                    </button>
+                  )
+                ) : (
+                  <p className="pt-2 mb-0">Install MetaMask</p>
+                )}
               </div>
             </div>
           </div>
